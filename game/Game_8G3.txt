@@ -415,3 +415,9 @@ com.hottagames.yh.laohu{GameThread}=7,2-4
 com.hottagames.yh.laohu{Render Thread}=7,2-4
 com.hottagames.yh.laohu{Foregro-rker*}=2-4
 com.hottagames.yh.laohu=2-6
+
+# PlantsVsZombiesRH
+com.LanPiaoPiao.PlantsVsZombiesRH{UnityMain}=7
+com.LanPiaoPiao.PlantsVsZombiesRH{UnityGfxDeviceW}=2-4
+com.LanPiaoPiao.PlantsVsZombiesRH{Job.Worker*}=2-4
+com.LanPiaoPiao.PlantsVsZombiesRH=2-6

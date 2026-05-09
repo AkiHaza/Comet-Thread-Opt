@@ -406,3 +406,9 @@ com.hottagames.yh.laohu{GameThread}=$(format_cpu_ranges "$p_core")
 com.hottagames.yh.laohu{Render Thread}=$(format_cpu_ranges "$p_core")
 com.hottagames.yh.laohu{Foregro-rker*}=$(format_cpu_ranges "$p_core")
 com.hottagames.yh.laohu=$(format_cpu_ranges "$e_core $p_core")
+
+# PlantsVsZombiesRH
+com.LanPiaoPiao.PlantsVsZombiesRH{UnityMain}=$(format_cpu_ranges "$hp_core")
+com.LanPiaoPiao.PlantsVsZombiesRH{UnityGfxDeviceW}=$(format_cpu_ranges "$p_core")
+com.LanPiaoPiao.PlantsVsZombiesRH{Job.Worker*}=$(format_cpu_ranges "$p_core")
+com.LanPiaoPiao.PlantsVsZombiesRH=$(format_cpu_ranges "$e_core $p_core")
