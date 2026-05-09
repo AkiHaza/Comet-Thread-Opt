@@ -161,6 +161,12 @@ app.komikku.beta{RenderThread}=$(format_cpu_ranges "$p_core")
 app.komikku.beta{AsyncTask*}=$(format_cpu_ranges "$p_core")
 app.komikku.beta{}=$(format_cpu_ranges "$e_core $p_core")
 
+# kototoro
+org.skepsun.kototoro{RenderThread}=$(format_cpu_ranges "$p_core")
+org.skepsun.kototoro{kepsun.kototoro}=$(format_cpu_ranges "$p_core")
+org.skepsun.kototoro{DefaultDispatch}=$(format_cpu_ranges "$p_core")
+org.skepsun.kototoro=$(format_cpu_ranges "$e_core $p_core")
+
 #Readest
 com.bilingify.readest{lingify.readest}=$(format_cpu_ranges "$p_core")
 com.bilingify.readest{RenderThread}=$(format_cpu_ranges "$p_core")

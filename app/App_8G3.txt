@@ -161,6 +161,12 @@ app.komikku.beta{RenderThread}=2-6
 app.komikku.beta{AsyncTask*}=5-6
 app.komikku.beta=5-6
 
+# kototoro
+org.skepsun.kototoro{RenderThread}=2-4
+org.skepsun.kototoro{kepsun.kototoro}=2-4
+org.skepsun.kototoro{DefaultDispatch}=5-6
+org.skepsun.kototoro=2-6
+
 #Readest
 com.bilingify.readest{lingify.readest}=2-6
 com.bilingify.readest{RenderThread}=2-6
