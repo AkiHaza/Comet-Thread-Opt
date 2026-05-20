@@ -421,3 +421,10 @@ com.LanPiaoPiao.PlantsVsZombiesRH{UnityMain}=7
 com.LanPiaoPiao.PlantsVsZombiesRH{UnityGfxDeviceW}=2-4
 com.LanPiaoPiao.PlantsVsZombiesRH{Job.Worker*}=2-4
 com.LanPiaoPiao.PlantsVsZombiesRH=2-6
+
+# 魂斗罗:归来
+com.tencent.shootgame{UnityMain}=7
+com.tencent.shootgame{UnityGfxDeviceW}=2-4
+com.tencent.shootgame{Job.Worker*}=2-4
+com.tencent.shootgame{Thread*}=2-4
+com.tencent.shootgame=2-6
