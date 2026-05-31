@@ -143,6 +143,11 @@ com.kurogame.mingchao{RHIThread}=2-4
 com.kurogame.mingchao{RenderThread*}=2-4
 com.kurogame.mingchao{NativeThread}=2-4
 com.kurogame.mingchao=2-6
+com.kurogame.wutheringwaves.global{GameThread}=7
+com.kurogame.wutheringwaves.global{RHIThread}=2-4
+com.kurogame.wutheringwaves.global{RenderThread*}=2-4
+com.kurogame.wutheringwaves.global{NativeThread}=2-4
+com.kurogame.wutheringwaves.global=2-6
 
 # CFM
 com.tencent.tmgp.cf{UnityMain}=7

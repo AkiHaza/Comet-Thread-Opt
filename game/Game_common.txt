@@ -137,6 +137,11 @@ com.kurogame.mingchao{RHIThread}=$(format_cpu_ranges "$p_core")
 com.kurogame.mingchao{RenderThread*}=$(format_cpu_ranges "$p_core")
 com.kurogame.mingchao{NativeThread}=$(format_cpu_ranges "$p_core")
 com.kurogame.mingchao=$(format_cpu_ranges "$e_core $p_core")
+com.kurogame.wutheringwaves.global{GameThread}=$(format_cpu_ranges "$hp_core")
+com.kurogame.wutheringwaves.global{RHIThread}=$(format_cpu_ranges "$p_core")
+com.kurogame.wutheringwaves.global{RenderThread*}=$(format_cpu_ranges "$p_core")
+com.kurogame.wutheringwaves.global{NativeThread}=$(format_cpu_ranges "$p_core")
+com.kurogame.wutheringwaves.global=$(format_cpu_ranges "$e_core $p_core")
 
 # CFM
 com.tencent.tmgp.cf{UnityMain}=$(format_cpu_ranges "$hp_core")
