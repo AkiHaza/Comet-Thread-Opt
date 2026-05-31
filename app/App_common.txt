@@ -204,8 +204,7 @@ com.ss.android.ugc.aweme.lite{*Thread}=$(format_cpu_ranges "$p_core")
 com.ss.android.ugc.aweme.lite{VDecod2-*}=$(format_cpu_ranges "$p_core")
 com.ss.android.ugc.aweme.lite{HeapTaskDaemon}=$(format_cpu_ranges "$p_core")
 com.ss.android.ugc.aweme.lite{danmaku-driver}=$(format_cpu_ranges "$p_core")
-com.ss.android.ugc.aweme.lite{droid.ugc.aweme}=$(format_cpu_ranges "$p_core")
-com.ss.android.ugc.aweme.lite{#pty-wqp-*}=$(format_cpu_ranges "$p_core")
+com.ss.android.ugc.aweme.lite{.ugc.aweme.lite}=$(format_cpu_ranges "$p_core")
 com.ss.android.ugc.aweme.lite=$(format_cpu_ranges "$e_core $p_core")
 
 # 抖音精选
