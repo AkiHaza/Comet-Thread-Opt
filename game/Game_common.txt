@@ -438,3 +438,9 @@ com.android1939.kardsapk{GameThread}=$(format_cpu_ranges "$hp_core")
 com.android1939.kardsapk{Thread-*}=$(format_cpu_ranges "$p_core")
 com.android1939.kardsapk{RenderThread*}=$(format_cpu_ranges "$p_core")
 com.android1939.kardsapk=$(format_cpu_ranges "$e_core $p_core")
+
+# Minecraft
+com.mojang.minecraftpe{Rendering Pool*}=$(format_cpu_ranges "$hp_core")
+com.mojang.minecraftpe{MINECRAFT MAIN}=$(format_cpu_ranges "$p_core")
+com.mojang.minecraftpe{Thread-*}=$(format_cpu_ranges "$p_core")
+com.mojang.minecraftpe=$(format_cpu_ranges "$e_core $p_core")

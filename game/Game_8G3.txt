@@ -447,3 +447,9 @@ com.android1939.kardsapk{GameThread}=7
 com.android1939.kardsapk{Thread-*}=2-4
 com.android1939.kardsapk{RenderThread*}=2-4
 com.android1939.kardsapk=2-6
+
+# Minecraft
+com.mojang.minecraftpe{Rendering Pool*}=7
+com.mojang.minecraftpe{MINECRAFT MAIN}=2-4
+com.mojang.minecraftpe{Thread-*}=2-4
+com.mojang.minecraftpe=2-6
