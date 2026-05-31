@@ -433,3 +433,13 @@ com.tencent.shootgame{UnityGfxDeviceW}=2-4
 com.tencent.shootgame{Job.Worker*}=2-4
 com.tencent.shootgame{Thread*}=2-4
 com.tencent.shootgame=2-6
+
+# kards
+com.android1939.kards{GameThread}=7 
+com.android1939.kards{Thread-*}=2-4
+com.android1939.kards{RenderThread*}=2-4
+com.android1939.kards=2-6
+com.android1939.kardsapk{GameThread}=7 
+com.android1939.kardsapk{Thread-*}=2-4
+com.android1939.kardsapk{RenderThread*}=2-4
+com.android1939.kardsapk=2-6

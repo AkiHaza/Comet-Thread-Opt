@@ -424,3 +424,13 @@ com.tencent.shootgame{UnityGfxDeviceW}=$(format_cpu_ranges "$p_core")
 com.tencent.shootgame{Job.Worker*}=$(format_cpu_ranges "$p_core")
 com.tencent.shootgame{Thread*}=$(format_cpu_ranges "$p_core")
 com.tencent.shootgame=$(format_cpu_ranges "$e_core $p_core")
+
+# kards
+com.android1939.kards{GameThread}=$(format_cpu_ranges "$hp_core") 
+com.android1939.kards{Thread-*}=$(format_cpu_ranges "$p_core")
+com.android1939.kards{RenderThread*}=$(format_cpu_ranges "$p_core")
+com.android1939.kards=$(format_cpu_ranges "$e_core $p_core")
+com.android1939.kardsapk{GameThread}=$(format_cpu_ranges "$hp_core") 
+com.android1939.kardsapk{Thread-*}=$(format_cpu_ranges "$p_core")
+com.android1939.kardsapk{RenderThread*}=$(format_cpu_ranges "$p_core")
+com.android1939.kardsapk=$(format_cpu_ranges "$e_core $p_core")
