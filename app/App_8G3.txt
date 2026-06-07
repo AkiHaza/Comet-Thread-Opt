@@ -258,6 +258,14 @@ com.zhihu.android{RenderThread}=2-6
 com.zhihu.android{m.zhihu.android}=5-6
 com.zhihu.android=5-6
 
+# 四川集客
+com.inspur.mobilefsp{RenderThread}=2-6
+com.inspur.mobilefsp{nspur.mobilefsp}=2-6
+com.inspur.mobilefsp=5-6
+com.inspur.mobilefsp:jse{RenderThread}=2-6
+com.inspur.mobilefsp:jse{nspur.mobilefsp}=2-6
+com.inspur.mobilefsp:jse=5-6
+
 # X
 com.twitter.android{twitter.android}=5-6
 com.twitter.android{RenderThread}=2-6

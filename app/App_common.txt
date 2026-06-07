@@ -262,6 +262,14 @@ com.uu898.uuhavequality:core{RenderThread}=$(format_cpu_ranges "$p_core")
 com.uu898.uuhavequality:core{BR-LagTrace-Thr}=$(format_cpu_ranges "$p_core")
 com.uu898.uuhavequality:core=$(format_cpu_ranges "$e_core $p_core")
 
+# 四川集客
+com.inspur.mobilefsp{RenderThread}=$(format_cpu_ranges "$p_core")
+com.inspur.mobilefsp{nspur.mobilefsp}=$(format_cpu_ranges "$p_core")
+com.inspur.mobilefsp=$(format_cpu_ranges "$e_core $p_core")
+com.inspur.mobilefsp:jse{RenderThread}=$(format_cpu_ranges "$p_core")
+com.inspur.mobilefsp:jse{nspur.mobilefsp}=$(format_cpu_ranges "$p_core")
+com.inspur.mobilefsp:jse=$(format_cpu_ranges "$e_core $p_core")
+
 # X
 com.twitter.android{twitter.android}=$(format_cpu_ranges "$p_core")
 com.twitter.android{RenderThread}=$(format_cpu_ranges "$p_core")
