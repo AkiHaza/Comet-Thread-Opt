@@ -221,6 +221,12 @@ com.ss.android.yumme.video{TRThread*}=$(format_cpu_ranges "$p_core")
 com.ss.android.yumme.video{VDecod*}=$(format_cpu_ranges "$p_core")
 com.ss.android.yumme.video=$(format_cpu_ranges "$e_core $p_core")
 
+# 纯粹直播
+com.mystyle.purelive{1.raster}=$(format_cpu_ranges "$p_core")
+com.mystyle.purelive{ystyle.purelive}=$(format_cpu_ranges "$p_core")
+com.mystyle.purelive{Thread-*}=$(format_cpu_ranges "$p_core")
+com.mystyle.purelive=$(format_cpu_ranges "$e_core $p_core")
+
 # 酷安
 com.coolapk.market{RenderThread}=$(format_cpu_ranges "$p_core")
 com.coolapk.market{Thread-*}=$(format_cpu_ranges "$p_core")
