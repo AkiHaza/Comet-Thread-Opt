@@ -192,6 +192,12 @@ com.qiyi.video{com.qiyi.video}=$(format_cpu_ranges "$p_core")
 com.qiyi.video{PumaPlyrVEgn}=$(format_cpu_ranges "$p_core")
 com.qiyi.video=$(format_cpu_ranges "$e_core $p_core")
 
+# 优酷
+com.youku.phone{NDK MediaCodec}=$(format_cpu_ranges "$p_core")
+com.youku.phone{Thread*}=$(format_cpu_ranges "$p_core")
+com.youku.phone{com.youku.phone}=$(format_cpu_ranges "$p_core")
+com.youku.phone=$(format_cpu_ranges "$e_core $p_core")
+
 # 抖音 
 com.ss.android.ugc.aweme{*Thread}=$(format_cpu_ranges "$p_core")
 com.ss.android.ugc.aweme{VDecod2-*}=$(format_cpu_ranges "$p_core")
