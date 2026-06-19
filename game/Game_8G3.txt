@@ -466,3 +466,9 @@ com.WandaSoftware.TruckersofEurope3{UnityMain}=7,2-4
 com.WandaSoftware.TruckersofEurope3{UnityGfxDeviceW}=7,2-4
 com.WandaSoftware.TruckersofEurope3{Job.Worker*}=2-4
 com.WandaSoftware.TruckersofEurope3=2-6
+
+# 对峙2
+com.axlebolt.standoff2{UnityMain}=7
+com.axlebolt.standoff2{UnityGfxDeviceW}=2-4
+com.axlebolt.standoff2{Job.Worker*}=2-4
+com.axlebolt.standoff2=2-6

@@ -456,3 +456,9 @@ com.WandaSoftware.TruckersofEurope3{UnityMain}=$(format_cpu_ranges "$hp_core")
 com.WandaSoftware.TruckersofEurope3{UnityGfxDeviceW}=$(format_cpu_ranges "$p_core")
 com.WandaSoftware.TruckersofEurope3{Job.Worker*}=$(format_cpu_ranges "$p_core")
 com.WandaSoftware.TruckersofEurope3=$(format_cpu_ranges "$e_core $p_core")
+
+# 对峙2
+com.axlebolt.standoff2{UnityMain}=$(format_cpu_ranges "$hp_core")
+com.axlebolt.standoff2{UnityGfxDeviceW}=$(format_cpu_ranges "$p_core")
+com.axlebolt.standoff2{Job.Worker*}=$(format_cpu_ranges "$p_core")
+com.axlebolt.standoff2=$(format_cpu_ranges "$e_core $p_core")
