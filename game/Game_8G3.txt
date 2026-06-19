@@ -460,3 +460,9 @@ com.netease.dwrg{Thread-*}=7,2-4
 com.netease.dwrg{NativeThread}=2-4
 com.netease.dwrg{om.netease.dwrg}=5-6
 com.netease.dwrg=2-6
+
+# 欧洲卡车模拟器3
+com.WandaSoftware.TruckersofEurope3{UnityMain}=7,2-4
+com.WandaSoftware.TruckersofEurope3{UnityGfxDeviceW}=7,2-4
+com.WandaSoftware.TruckersofEurope3{Job.Worker*}=2-4
+com.WandaSoftware.TruckersofEurope3=2-6

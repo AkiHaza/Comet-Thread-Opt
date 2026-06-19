@@ -450,3 +450,9 @@ com.netease.dwrg{Thread-*}=$(format_cpu_ranges "$hp_core")
 com.netease.dwrg{NativeThread}=$(format_cpu_ranges "$p_core")
 com.netease.dwrg{om.netease.dwrg}=$(format_cpu_ranges "$p_core")
 com.netease.dwrg=$(format_cpu_ranges "$e_core $p_core")
+
+# 欧洲卡车模拟器3
+com.WandaSoftware.TruckersofEurope3{UnityMain}=$(format_cpu_ranges "$hp_core")
+com.WandaSoftware.TruckersofEurope3{UnityGfxDeviceW}=$(format_cpu_ranges "$p_core")
+com.WandaSoftware.TruckersofEurope3{Job.Worker*}=$(format_cpu_ranges "$p_core")
+com.WandaSoftware.TruckersofEurope3=$(format_cpu_ranges "$e_core $p_core")
