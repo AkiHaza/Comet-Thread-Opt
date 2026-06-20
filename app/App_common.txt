@@ -238,7 +238,7 @@ com.coolapk.market=$(format_cpu_ranges "$e_core $p_core")
 gov.pianzong.androidnga{zong.androidnga}=$(format_cpu_ranges "$p_core")
 gov.pianzong.androidnga{RenderThread}=$(format_cpu_ranges "$p_core")
 gov.pianzong.androidnga{Thread*}=$(format_cpu_ranges "$p_core")
-gov.pianzong.androidnga=$(format_cpu_ranges "$p_core $e_core")
+gov.pianzong.androidnga=$(format_cpu_ranges "$e_core $p_core")
 
 # 微博
 com.sina.weibo{RenderThread}=$(format_cpu_ranges "$p_core")
