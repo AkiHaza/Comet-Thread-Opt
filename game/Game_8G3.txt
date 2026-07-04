@@ -472,3 +472,9 @@ com.axlebolt.standoff2{UnityMain}=7
 com.axlebolt.standoff2{UnityGfxDeviceW}=2-4
 com.axlebolt.standoff2{Job.Worker*}=2-4
 com.axlebolt.standoff2=2-6
+
+# 燕云十六声
+com.netease.yyslscn{Thread*}=7,2-4
+com.netease.yyslscn{Compute_w*}=2-4
+com.netease.yyslscn{NativeThread}=2-4
+com.netease.yyslscn=2-6

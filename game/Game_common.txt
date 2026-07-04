@@ -462,3 +462,9 @@ com.axlebolt.standoff2{UnityMain}=$(format_cpu_ranges "$hp_core")
 com.axlebolt.standoff2{UnityGfxDeviceW}=$(format_cpu_ranges "$p_core")
 com.axlebolt.standoff2{Job.Worker*}=$(format_cpu_ranges "$p_core")
 com.axlebolt.standoff2=$(format_cpu_ranges "$e_core $p_core")
+
+# 燕云十六声
+com.netease.yyslscn{Thread*}=$(format_cpu_ranges "$hp_core")
+com.netease.yyslscn{Compute_w*}=$(format_cpu_ranges "$p_core")
+com.netease.yyslscn{NativeThread}=$(format_cpu_ranges "$p_core")
+com.netease.yyslscn=$(format_cpu_ranges "$e_core $p_core")
