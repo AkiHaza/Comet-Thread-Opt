@@ -410,6 +410,12 @@ com.kuaiduizuoye.scan{RenderThread}=$(format_cpu_ranges "$p_core")
 com.kuaiduizuoye.scan{Chrome_IOThread}=$(format_cpu_ranges "$p_core")
 com.kuaiduizuoye.scan=$(format_cpu_ranges "$e_core $p_core")
 
+# 醒图(可能无效)
+com.xt.retouch{Signal Catcher}=$(format_cpu_ranges "$p_core")
+com.xt.retouch{perfetto_hprof_}=$(format_cpu_ranges "$p_core")
+com.xt.retouch{Jit thread pool}=$(format_cpu_ranges "$p_core")
+com.xt.retouch=$(format_cpu_ranges "$e_core $p_core")
+
 # 豆包
 com.larus.nova{RenderThread}=$(format_cpu_ranges "$p_core")
 com.larus.nova{com.larus.nova}=$(format_cpu_ranges "$p_core")
