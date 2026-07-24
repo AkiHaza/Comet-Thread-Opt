@@ -48,13 +48,17 @@ com.pubg.krmobile{RenderThread*}=2-4
 com.pubg.krmobile{TaskGraphNP*}=2-4
 com.pubg.krmobile=2-6
 
-# 使命召唤手游
+# 使命召唤手游(CN,Garena)
 com.tencent.tmgp.cod{UnityMain*}=7
 com.tencent.tmgp.cod{UnityGfx*}=2-4
 com.tencent.tmgp.cod{Thread-*}=2-4
 com.tencent.tmgp.cod{Job.worker*}=2-4
 com.tencent.tmgp.cod{Audio*}=2-4
 com.tencent.tmgp.cod=2-6
+com.garena.game.codm{UnityMain}=7
+com.garena.game.codm{UnityGfxDeviceW}=2-4
+com.garena.game.codm{Thread*}=2-4
+com.garena.game.codm=2-6
 
 # 英雄联盟
 com.tencent.lolm{UnityMain}=7

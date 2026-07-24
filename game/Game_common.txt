@@ -41,13 +41,17 @@ com.pubg.krmobile{RenderThread*}=$(format_cpu_ranges "$p_core")
 com.pubg.krmobile{TaskGraphNP*}=$(format_cpu_ranges "$p_core")
 com.pubg.krmobile=$(format_cpu_ranges "$e_core $p_core")
 
-# 使命召唤手游
+# 使命召唤手游(CN,Garena)
 com.tencent.tmgp.cod{UnityMain*}=$(format_cpu_ranges "$hp_core")
 com.tencent.tmgp.cod{UnityGfx*}=$(format_cpu_ranges "$p_core")
 com.tencent.tmgp.cod{Thread-*}=$(format_cpu_ranges "$p_core")
 com.tencent.tmgp.cod{Job.worker*}=$(format_cpu_ranges "$p_core")
 com.tencent.tmgp.cod{Audio*}=$(format_cpu_ranges "$p_core")
 com.tencent.tmgp.cod=$(format_cpu_ranges "$e_core $p_core")
+com.garena.game.codm{UnityMain}=$(format_cpu_ranges "$hp_core")
+com.garena.game.codm{UnityGfxDeviceW}=$(format_cpu_ranges "$p_core")
+com.garena.game.codm{Thread*}=$(format_cpu_ranges "$p_core")
+com.garena.game.codm=$(format_cpu_ranges "$e_core $p_core")
 
 # 英雄联盟
 com.tencent.lolm{UnityMain}=$(format_cpu_ranges "$hp_core")
