@@ -486,3 +486,8 @@ com.netease.yyslscn{Thread*}=7,2-4
 com.netease.yyslscn{Compute_w*}=2-4
 com.netease.yyslscn{NativeThread}=2-4
 com.netease.yyslscn=2-6
+
+# 遗忘之海
+com.netease.ywzh{Thread*}=7,2-4
+com.netease.ywzh{om.netease.ywzh}=5-6
+com.netease.ywzh=2-6
