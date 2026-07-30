@@ -453,11 +453,15 @@ com.android1939.kardsapk{Thread-*}=2-4
 com.android1939.kardsapk{RenderThread*}=2-4
 com.android1939.kardsapk=2-6
 
-# Minecraft
+# Minecraft,我的世界
 com.mojang.minecraftpe{Rendering Pool*}=7
 com.mojang.minecraftpe{MINECRAFT MAIN}=2-4
 com.mojang.minecraftpe{Thread-*}=2-4
 com.mojang.minecraftpe=2-6
+com.netease.x19{MINECRAFT MAIN}=7
+com.netease.x19{AsyncTask*}=2-4
+com.netease.x19{RenderThread}=2-4
+com.netease.x19=2-6
 
 # 第五人格
 com.netease.dwrg{Thread-*}=7,2-4

@@ -443,11 +443,15 @@ com.android1939.kardsapk{Thread-*}=$(format_cpu_ranges "$p_core")
 com.android1939.kardsapk{RenderThread*}=$(format_cpu_ranges "$p_core")
 com.android1939.kardsapk=$(format_cpu_ranges "$e_core $p_core")
 
-# Minecraft
+# Minecraft,我的世界
 com.mojang.minecraftpe{Rendering Pool*}=$(format_cpu_ranges "$hp_core")
 com.mojang.minecraftpe{MINECRAFT MAIN}=$(format_cpu_ranges "$p_core")
 com.mojang.minecraftpe{Thread-*}=$(format_cpu_ranges "$p_core")
 com.mojang.minecraftpe=$(format_cpu_ranges "$e_core $p_core")
+com.netease.x19{MINECRAFT MAIN}=$(format_cpu_ranges "$hp_core")
+com.netease.x19{AsyncTask*}=$(format_cpu_ranges "$p_core")
+com.netease.x19{RenderThread}=$(format_cpu_ranges "$p_core")
+com.netease.x19=$(format_cpu_ranges "$e_core $p_core")
 
 # 第五人格
 com.netease.dwrg{Thread-*}=$(format_cpu_ranges "$hp_core")
