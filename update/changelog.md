@@ -1,12 +1,8 @@
-更新日志
-Important update:
-功能更改：
-1.将AppOpt二进制文件迁移到我维护的Aki-AppOpt
-2.重构action脚本，使其更加稳定
-3.移除Banner
-4.重构costomize.sh使其更加智能
-5.将零散的配置文件统一收束到config.txt，模式切换可将mode=后改为mix/app
-6.添加根据时区显示更新时间
+## 8.0
 
-Regular updates：
-适配并优化更多应用和游戏
+- 合并 Common 与 8G3 为单一自动适配模块。
+- 安装时识别 SM8650/pineapple，并在 `confige.txt` 写入 `8G3=on/off`。
+- Action 根据 SoC 标记下载 8G3 或 Common 配置，并保留 App/Mix 模式。
+- Common 规则改用 AkiAppOpt 语义核心，不再读取安装阶段生成的核心编号。
+- 移植 AkiAppOpt 的 PID 防重复启动、显式配置路径和配置热加载支持。
+- 更新模块时保留用户已有的 `applist.conf`。

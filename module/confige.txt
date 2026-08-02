@@ -1,0 +1,6 @@
+mode=app
+8G3=off
+soc_model=
+soc_platform=
+time_area=UTC
+time=

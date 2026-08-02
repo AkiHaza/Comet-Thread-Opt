@@ -1,7 +1,0 @@
-id=AppOpt
-name=Comet Thread Opt
-version=7.0
-versionCode=70
-author=Suto & 秋山羽桜
-description=彗星线程分配
-updateJson=https://raw.githubusercontent.com/AkiHaza/Comet-Thread-Opt/module/update/update8G3.json

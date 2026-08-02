@@ -1,0 +1,80 @@
+name: Build Unified Comet Thread Opt
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [module, main]
+    paths:
+      - module/**
+      - .github/workflows/build.yml
+  pull_request:
+    paths:
+      - module/**
+      - .github/workflows/build.yml
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NDK_VERSION: r27c
+      MODULE_DIR: module
+      AKI_APP_OPT_REF: Dev
+
+    steps:
+      - name: Checkout Comet rules
+        uses: actions/checkout@v4
+        with:
+          path: comet
+
+      - name: Checkout AkiAppOpt core
+        uses: actions/checkout@v4
+        with:
+          repository: AkiHaza/AkiAppOpt
+          ref: ${{ env.AKI_APP_OPT_REF }}
+          path: akiappopt
+
+      - uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: ${{ env.NDK_VERSION }}
+          local-cache: true
+
+      - name: Build AkiAppOpt binaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_file="$GITHUB_WORKSPACE/akiappopt/module/AppOpt.c"
+          module_dir="$GITHUB_WORKSPACE/comet/$MODULE_DIR"
+          toolchain="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          build() {
+            mkdir -p "$module_dir/bin/$1"
+            "$toolchain/$2" -O2 -ffunction-sections -fdata-sections -s \
+              -Wl,--gc-sections -o "$module_dir/bin/$1/AppOpt" "$source_file"
+            chmod 0755 "$module_dir/bin/$1/AppOpt"
+          }
+          build arm64-v8a aarch64-linux-android21-clang
+          build armeabi-v7a armv7a-linux-androideabi21-clang
+          build x86_64 x86_64-linux-android21-clang
+
+      - name: Package module
+        id: package
+        shell: bash
+        working-directory: comet
+        run: |
+          set -euo pipefail
+          version="$(sed -n 's/^version=//p' "$MODULE_DIR/module.prop" | head -n1)"
+          artifact="Comet-Thread-Opt-${version}.zip"
+          chmod 0755 "$MODULE_DIR"/*.sh
+          chmod 0755 "$MODULE_DIR/META-INF/com/google/android/update-binary"
+          (cd "$MODULE_DIR" && zip -r -9 "../$artifact" . -x 'bin/*/.gitkeep')
+          echo "artifact=$artifact" >> "$GITHUB_OUTPUT"
+
+      - name: Upload module
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.package.outputs.artifact }}
+          path: comet/${{ steps.package.outputs.artifact }}
+          if-no-files-found: error
+          retention-days: 14
