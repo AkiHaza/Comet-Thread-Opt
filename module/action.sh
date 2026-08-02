@@ -48,18 +48,6 @@ set_config_value() {
     fi
 }
 
-normalize_common_rules() {
-    local file="$1"
-
-    sed -i \
-        -e 's|\$(format_cpu_ranges "$e_core $p_core")|e-core,p-core|g' \
-        -e 's|\$(format_cpu_ranges "$p_core $hp_core")|p-core,hp-core|g' \
-        -e 's|\$(format_cpu_ranges "$hp_core")|hp-core|g' \
-        -e 's|\$(format_cpu_ranges "$e_core")|e-core|g' \
-        -e 's|\$(format_cpu_ranges "$p_core")|p-core|g' \
-        "$file"
-}
-
 MODE_VAL="$(get_config_value mode)"
 SOC_8G3="$(get_config_value 8G3)"
 TIME_AREA="$(get_config_value time_area)"
@@ -99,10 +87,6 @@ if [ "$MODE_VAL" = "mix" ]; then
     else
         echo "⚠️  Game 配置下载失败，仅使用 App 配置"
     fi
-fi
-
-if [ "$SOC_8G3" = "off" ]; then
-    normalize_common_rules "$TMP_RULES"
 fi
 
 mv -f "$TMP_RULES" "$APPLIST_CONF"

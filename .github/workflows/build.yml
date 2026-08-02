@@ -1,4 +1,4 @@
-name: Build Unified Comet Thread Opt
+name: Build CI
 
 on:
   workflow_dispatch:

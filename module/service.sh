@@ -27,7 +27,7 @@ if [ -f "$PID_FILE" ]; then
 fi
 
 if [ "$APP_OPT_RUNNING" != "1" ]; then
-    nohup "$MODDIR/AppOpt" -c "$MODDIR/applist.conf" -b AppOpt >/dev/null 2>&1 &
+    nohup "$MODDIR/AppOpt" -c "$MODDIR/applist.conf" -b AkiAppOpt >/dev/null 2>&1 &
     echo $! > "$PID_FILE"
 fi
 

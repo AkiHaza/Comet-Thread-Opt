@@ -127,6 +127,7 @@ module_instructions() {
     ui_print "********************************************"
     ui_print "线程规则: /data/adb/modules/AppOpt/applist.conf"
     ui_print "设备配置: /data/adb/modules/AppOpt/confige.txt"
+    ui_print "cpuset目录: /dev/cpuset/AkiAppOpt"
     ui_print "修改规则无需重启，AkiAppOpt 会自动热加载"
     ui_print "安装后可点击模块操作按钮更新对应配置"
     ui_print "更多说明: http://AppOpt.suto.top"
