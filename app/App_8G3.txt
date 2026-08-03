@@ -385,11 +385,11 @@ io.legado.app.release=5-6
 
 #地图
 # 高德地图  
-com.autonavi.minimap{AJXBizCheck}=5-6  
-com.autonavi.minimap{JavaScriptThrea}=5-6
-com.autonavi.minimap{Map-Logical-0}=5-6 
-com.autonavi.minimap{utonavi.minimap}=5-6
-com.autonavi.minimap=5-6  
+#com.autonavi.minimap{AJXBizCheck}=5-6  
+#com.autonavi.minimap{JavaScriptThrea}=5-6
+#com.autonavi.minimap{Map-Logical-0}=5-6 
+#com.autonavi.minimap{utonavi.minimap}=5-6
+#com.autonavi.minimap=5-6  
 
 # 百度地图  
 com.baidu.BaiduMap{31.1_0223536945}=5-6 

@@ -383,11 +383,11 @@ io.legado.app.release=e-core,p-core
 
 #地图
 # 高德地图  
-com.autonavi.minimap{AJXBizCheck}=p-core  
-com.autonavi.minimap{JavaScriptThrea}=p-core
-com.autonavi.minimap{Map-Logical-0}=p-core 
-com.autonavi.minimap{utonavi.minimap}=p-core
-com.autonavi.minimap=e-core,p-core
+#com.autonavi.minimap{AJXBizCheck}=p-core  
+#com.autonavi.minimap{JavaScriptThrea}=p-core
+#com.autonavi.minimap{Map-Logical-0}=p-core 
+#com.autonavi.minimap{utonavi.minimap}=p-core
+#com.autonavi.minimap=e-core,p-core
 
 # 百度地图  
 com.baidu.BaiduMap{31.1_0223536945}=p-core 
