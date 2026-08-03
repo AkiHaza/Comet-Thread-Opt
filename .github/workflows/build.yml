@@ -65,7 +65,7 @@ jobs:
         run: |
           set -euo pipefail
           version="$(sed -n 's/^version=//p' "$MODULE_DIR/module.prop" | head -n1)"
-          artifact="Comet-Thread-Opt-${version}.zip"
+          artifact="${version}.zip"
           chmod 0755 "$MODULE_DIR"/*.sh
           chmod 0755 "$MODULE_DIR/META-INF/com/google/android/update-binary"
           (cd "$MODULE_DIR" && zip -r -9 "../$artifact" . -x 'bin/*/.gitkeep')

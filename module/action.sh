@@ -9,25 +9,37 @@ RAW_BASE="https://raw.githubusercontent.com/AkiHaza/Comet-Thread-Opt/main"
 API_URL="https://api.github.com/repos/AkiHaza/Comet-Thread-Opt/commits"
 PER_PAGE=22
 
-TMP_APP="$MODDIR/.tmp_app"
-TMP_GAME="$MODDIR/.tmp_game"
-TMP_RULES="$MODDIR/.tmp_rules"
-API_RESPONSE="$MODDIR/.api_response"
+TMP_GAME="$MODDIR/.tmp_game.$$"
+TMP_RULES="$MODDIR/.tmp_rules.$$"
+API_RESPONSE="$MODDIR/.api_response.$$"
 
 cleanup() {
-    rm -f "$TMP_APP" "$TMP_GAME" "$TMP_RULES" "$API_RESPONSE"
+    rm -f "$TMP_GAME" "$TMP_RULES" "$API_RESPONSE"
 }
 trap cleanup EXIT
+trap 'exit 1' HUP INT TERM
 
 download_file() {
     local url="$1"
     local output="$2"
 
+    rm -f "$output"
     if command -v curl >/dev/null 2>&1; then
-        curl -fsSL --connect-timeout 10 -o "$output" "$url"
+        if ! curl -fsSL --connect-timeout 10 -o "$output" "$url"; then
+            rm -f "$output"
+            return 1
+        fi
     elif command -v wget >/dev/null 2>&1; then
-        wget -q -T 10 -O "$output" "$url"
+        if ! wget -q -T 10 -O "$output" "$url"; then
+            rm -f "$output"
+            return 1
+        fi
     else
+        return 1
+    fi
+
+    if [ ! -s "$output" ]; then
+        rm -f "$output"
         return 1
     fi
 }
@@ -70,28 +82,32 @@ fi
 echo "-------------------------------------"
 echo "📱 当前配置: $PROFILE_NAME / $MODE_VAL"
 echo "⬇️  正在下载 $PROFILE_NAME App 配置..."
-if ! download_file "$APP_URL" "$TMP_APP"; then
+if ! download_file "$APP_URL" "$TMP_RULES"; then
     echo "❌ App 配置下载失败，请检查网络"
+    echo "⚠️  已保留当前配置"
     exit 1
 fi
-
-cat "$TMP_APP" > "$TMP_RULES"
 
 GAME_UPDATED=0
 if [ "$MODE_VAL" = "mix" ]; then
     echo "⬇️  正在下载 $PROFILE_NAME Game 配置..."
-    if download_file "$GAME_URL" "$TMP_GAME"; then
-        printf '\n' >> "$TMP_RULES"
-        cat "$TMP_GAME" >> "$TMP_RULES"
-        GAME_UPDATED=1
-    else
-        echo "⚠️  Game 配置下载失败，仅使用 App 配置"
+    if ! download_file "$GAME_URL" "$TMP_GAME"; then
+        echo "❌ Game 配置下载失败，请检查网络"
+        echo "⚠️  已保留当前配置，避免 Mix 规则不完整"
+        exit 1
     fi
+    printf '\n' >> "$TMP_RULES"
+    cat "$TMP_GAME" >> "$TMP_RULES"
+    GAME_UPDATED=1
 fi
 
 mv -f "$TMP_RULES" "$APPLIST_CONF"
 
-UPDATE_TIME=$(TZ="$TIME_AREA" date +"%m%d %H:%M")
+if ! UPDATE_TIME=$(TZ="$TIME_AREA" date +"%m%d %H:%M" 2>/dev/null); then
+    TIME_AREA=UTC
+    UPDATE_TIME=$(TZ=UTC date +"%m%d %H:%M")
+    set_config_value time_area "$TIME_AREA"
+fi
 MODE_NAME="App"
 [ "$MODE_VAL" = "mix" ] && MODE_NAME="Mix"
 sed -i "/^description=/ s|^description=.*|description=彗星线程分配 $PROFILE_NAME $MODE_NAME 配置时间:${UPDATE_TIME}|" "$MODDIR/module.prop"

@@ -130,6 +130,7 @@ module_instructions() {
     ui_print "cpuset目录: /dev/cpuset/AkiAppOpt"
     ui_print "修改规则无需重启，AkiAppOpt 会自动热加载"
     ui_print "安装后可点击模块操作按钮更新对应配置"
+    ui_print "重启后需运行action"
     ui_print "更多说明: http://AppOpt.suto.top"
     ui_print "********************************************"
 }
