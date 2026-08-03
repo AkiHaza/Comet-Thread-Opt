@@ -171,16 +171,14 @@ com.tencent.KiHan{Job.Worker*}=2-4
 com.tencent.KiHan=2-6
 
 # 三角洲行动
-com.tencent.tmgp.dfm{GameThread}=7
-com.tencent.tmgp.dfm{RenderThread}=2-4
-com.tencent.tmgp.dfm{Thread-*}=2-4
-com.tencent.tmgp.dfm{TaskGraphNP*}=2-4
+com.tencent.tmgp.dfm{RenderThread}=7
+com.tencent.tmgp.dfm{GameThread}=2-4
+com.tencent.tmgp.dfm{TaskGraphNP 0}=2-4
 com.tencent.tmgp.dfm{NativeThread}=2-4
 com.tencent.tmgp.dfm=2-6
-com.proxima.dfm{GameThread}=7
-com.proxima.dfm{RenderThread}=2-4
-com.proxima.dfm{Thread-*}=2-4
-com.proxima.dfm{TaskGraphNP*}=2-4
+com.proxima.dfm{RenderThread}=7
+com.proxima.dfm{GameThread}=2-4
+com.proxima.dfm{TaskGraphNP 0}=2-4
 com.proxima.dfm{NativeThread}=2-4
 com.proxima.dfm=2-6
 

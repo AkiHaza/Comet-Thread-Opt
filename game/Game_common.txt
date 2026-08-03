@@ -164,16 +164,14 @@ com.tencent.KiHan{Job.Worker*}=p-core
 com.tencent.KiHan=e-core,p-core
 
 # 三角洲行动
-com.tencent.tmgp.dfm{GameThread}=hp-core
-com.tencent.tmgp.dfm{RenderThread}=p-core
-com.tencent.tmgp.dfm{Thread-*}=p-core
-com.tencent.tmgp.dfm{TaskGraphNP*}=p-core
+com.tencent.tmgp.dfm{RenderThread}=hp-core
+com.tencent.tmgp.dfm{GameThread}=p-core
+com.tencent.tmgp.dfm{TaskGraphNP 0}=p-core
 com.tencent.tmgp.dfm{NativeThread}=p-core
 com.tencent.tmgp.dfm=e-core,p-core
-com.proxima.dfm{GameThread}=hp-core
-com.proxima.dfm{RenderThread}=p-core
-com.proxima.dfm{Thread-*}=p-core
-com.proxima.dfm{TaskGraphNP*}=p-core
+com.proxima.dfm{RenderThread}=hp-core
+com.proxima.dfm{GameThread}=p-core
+com.proxima.dfm{TaskGraphNP 0}=p-core
 com.proxima.dfm{NativeThread}=p-core
 com.proxima.dfm=e-core,p-core
 
