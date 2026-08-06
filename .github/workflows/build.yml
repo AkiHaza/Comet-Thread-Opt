@@ -21,7 +21,7 @@ jobs:
     env:
       NDK_VERSION: r27c
       MODULE_DIR: module
-      AKI_APP_OPT_REF: Dev
+      AKI_APP_OPT_REF: 1.1.0
 
     steps:
       - name: Checkout Comet rules
