@@ -227,6 +227,12 @@ com.mystyle.purelive{ystyle.purelive}=p-core
 com.mystyle.purelive{Thread-*}=p-core
 com.mystyle.purelive=e-core,p-core
 
+# 奇妙影视
+com.magicalstory.videos{RenderThread}=p-core
+com.magicalstory.videos{MediaCodec_loop}=p-core
+com.magicalstory.videos{calstory.videos}=p-core
+com.magicalstory.videos=e-core,p-core
+
 # 酷安
 com.coolapk.market{RenderThread}=p-core
 com.coolapk.market{Thread-*}=p-core
