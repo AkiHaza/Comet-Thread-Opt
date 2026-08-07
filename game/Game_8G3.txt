@@ -489,3 +489,8 @@ com.netease.yyslscn=2-6
 com.netease.ywzh{Thread*}=7,2-4
 com.netease.ywzh{om.netease.ywzh}=5-6
 com.netease.ywzh=2-6
+
+# 光遇
+com.netease.sky{MainThread}=7
+com.netease.sky{JobThread*}=2-4
+com.netease.sky=2-6

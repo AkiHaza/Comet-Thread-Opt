@@ -479,3 +479,8 @@ com.netease.yyslscn=e-core,p-core
 com.netease.ywzh{Thread*}=p-core,hp-core
 com.netease.ywzh{om.netease.ywzh}=p-core
 com.netease.ywzh=e-core,p-core
+
+# 光遇
+com.netease.sky{MainThread}=hp-core
+com.netease.sky{JobThread*}=p-core
+com.netease.sky=e-core,p-core
