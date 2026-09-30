@@ -310,6 +310,12 @@ com.discord{RenderThread}=2-6
 com.discord{mqt_js}=5-6
 com.discord=5-6
 
+# 多邻国
+com.duolingo{com.duolingo}=5-6
+com.duolingo{Thread-*}=2-6
+com.duolingo{RenderThread}=2-6
+com.duolingo=5-6
+
 # 动漫共和国
 com.shizi.tool.p3{RenderThread}=2-6
 com.shizi.tool.p3{imore.wallpaper}=2-6

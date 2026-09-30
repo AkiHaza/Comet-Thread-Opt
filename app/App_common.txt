@@ -308,6 +308,12 @@ com.discord{RenderThread}=p-core
 com.discord{mqt_js}=p-core
 com.discord=e-core,p-core
 
+# 多邻国
+com.duolingo{com.duolingo}=p-core
+com.duolingo{Thread-*}=p-core
+com.duolingo{RenderThread}=p-core
+com.duolingo=e-core,p-core
+
 # 动漫共和国
 com.shizi.tool.p3{RenderThread}=p-core
 com.shizi.tool.p3{imore.wallpaper}=p-core
