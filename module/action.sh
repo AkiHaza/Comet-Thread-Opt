@@ -61,13 +61,14 @@ set_config_value() {
 }
 
 MODE_VAL="$(get_config_value mode)"
-SOC_8G3="$(get_config_value 8G3)"
 TIME_AREA="$(get_config_value time_area)"
 LAST_TIME="$(get_config_value time)"
 
 [ "$MODE_VAL" = "mix" ] || MODE_VAL="app"
-[ "$SOC_8G3" = "on" ] || SOC_8G3="off"
 [ -n "$TIME_AREA" ] || TIME_AREA="UTC"
+
+. "$MODDIR/soc_profile.sh"
+detect_soc_profile
 
 if [ "$SOC_8G3" = "on" ]; then
     PROFILE_NAME="8G3"
@@ -81,6 +82,7 @@ fi
 
 echo "-------------------------------------"
 echo "📱 当前配置: $PROFILE_NAME / $MODE_VAL"
+echo "🔎 CPU 核数: $CPU_COUNT"
 echo "⬇️  正在下载 $PROFILE_NAME App 配置..."
 if ! download_file "$APP_URL" "$TMP_RULES"; then
     echo "❌ App 配置下载失败，请检查网络"
@@ -100,6 +102,8 @@ if [ "$MODE_VAL" = "mix" ]; then
 fi
 
 mv -f "$TMP_RULES" "$APPLIST_CONF"
+set_config_value 8G3 "$SOC_8G3"
+set_config_value cpu_count "$CPU_COUNT"
 
 if ! UPDATE_TIME=$(TZ="$TIME_AREA" date +"%m%d %H:%M" 2>/dev/null); then
     TIME_AREA=UTC

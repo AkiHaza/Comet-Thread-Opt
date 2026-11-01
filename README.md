@@ -7,10 +7,10 @@
 仓库已将原 `Common` 与 `8G3` 两个模块合并为 `module/`：
 
 - 安装时读取 `ro.soc.model`、`ro.board.platform` 和 `ro.hardware`。
-- 检测到 `SM8650` 或 `pineapple` 时，在 `confige.txt` 写入 `8G3=on`。
-- 其他 SoC 写入 `8G3=off`，使用 Common 语义核心规则。
+- 检测到 `SM8650` 或 `pineapple`，且 `/sys/devices/system/cpu/present` 确认是 CPU 0–7 的八核版本时，在 `confige.txt` 写入 `8G3=on`。
+- 七核等其他核心版本、其他 SoC 或无法确认核数时使用 Common 语义核心规则；不按当前在线核心数判断。
 - 音量上选择 App 模式，音量下选择 App+Game 的 Mix 模式。
-- 安装后点击 Magisk 模块操作按钮即可按设备类型和模式更新规则，下载内容原样写入 `applist.conf`。
+- 安装后点击 Magisk 模块操作按钮会重新核对 SoC 和核心列表，再按设备类型和模式更新规则，下载内容原样写入 `applist.conf`；旧配置中的 `8G3=on` 不会绕过检测。
 
 模块 ID 为 `AppOpt`，安装目录为 `/data/adb/modules/AppOpt`；运行时 cpuset 目录保持 `/dev/cpuset/AkiAppOpt`。设备配置 `confige.txt` 由安装脚本自动生成。首次从旧版升级时完整保留现有规则；已有默认规则基线后，后续升级使用三方合并更新默认规则，同时保留用户的新增、修改和删除。
 
@@ -24,6 +24,7 @@ module/bin/armeabi-v7a/     ARM32 成品
 module/bin/x86_64/          x86-64 成品
 module/bin/SHA256SUMS       成品 SHA256 校验清单
 module/config_merge.awk     升级时的规则三方合并
+module/soc_profile.sh       安装与 Action 共用的 SoC/核数识别
 update/                    在线更新元数据
 .github/workflows/         校验成品、检查脚本并打包模块
 ```
@@ -40,7 +41,7 @@ update/                    在线更新元数据
 
 - App：日常应用线程规则。
 - Game：游戏线程规则，仅在 Mix 模式下追加。
-- 8G3：针对 Snapdragon 8 Gen 3 的固定核心编号规则。
+- 8G3：仅针对 CPU 编号为 0–7 的八核 Snapdragon 8 Gen 3 的固定核心编号规则。
 - Common：通用规则会从远端原样写入配置文件，理论上支持多种 SoC。
 
 规则文件修改后由 AkiAppOpt 热加载，无需重启。

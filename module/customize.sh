@@ -54,26 +54,11 @@ remove_sys_perf_config() {
     fi
 }
 
-detect_soc_profile() {
-    SOC_MODEL=$(getprop ro.soc.model)
-    SOC_PLATFORM=$(getprop ro.board.platform)
-    SOC_HARDWARE=$(getprop ro.hardware)
-    SOC_ID=$(printf '%s %s %s' "$SOC_MODEL" "$SOC_PLATFORM" "$SOC_HARDWARE" | tr '[:upper:]' '[:lower:]')
-
-    case "$SOC_ID" in
-        *sm8650*|*pineapple*)
-            SOC_8G3=on
-            PROFILE_NAME=8G3
-            ;;
-        *)
-            SOC_8G3=off
-            PROFILE_NAME=Common
-            ;;
-    esac
-
+print_soc_profile() {
     ui_print "********************************************"
     ui_print "- SoC model: ${SOC_MODEL:-unknown}"
     ui_print "- SoC platform: ${SOC_PLATFORM:-unknown}"
+    ui_print "- CPU cores: $CPU_COUNT"
     ui_print "- Thread profile: $PROFILE_NAME"
 }
 
@@ -106,6 +91,7 @@ mode=$MODE_VAL
 8G3=$SOC_8G3
 soc_model=$SOC_MODEL
 soc_platform=$SOC_PLATFORM
+cpu_count=$CPU_COUNT
 time_area=$TIME_AREA
 time=$UTC_TIME
 configEOF
@@ -157,7 +143,9 @@ check_magisk_version
 check_required_files
 extract_bin
 remove_sys_perf_config
+. "$MODPATH/soc_profile.sh"
 detect_soc_profile
+print_soc_profile
 choose_mode
 preserve_existing_config
 module_instructions
