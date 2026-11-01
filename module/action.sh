@@ -6,6 +6,7 @@ CONFIG_FILE="$MODDIR/confige.txt"
 APPLIST_CONF="$MODDIR/applist.conf"
 
 RAW_BASE="https://raw.githubusercontent.com/AkiHaza/Comet-Thread-Opt/main"
+GHPROXY_BASE="https://gh-proxy.org"
 API_URL="https://api.github.com/repos/AkiHaza/Comet-Thread-Opt/commits"
 PER_PAGE=22
 
@@ -23,9 +24,13 @@ download_file() {
     local url="$1"
     local output="$2"
 
+    if [ "$GHPROXY" = "on" ]; then
+        url="$GHPROXY_BASE/$url"
+    fi
+
     rm -f "$output"
     if command -v curl >/dev/null 2>&1; then
-        if ! curl -fsSL --connect-timeout 10 -o "$output" "$url"; then
+        if ! curl -fsSL --connect-timeout 10 --max-time 30 -o "$output" "$url"; then
             rm -f "$output"
             return 1
         fi
@@ -38,7 +43,7 @@ download_file() {
         return 1
     fi
 
-    if [ ! -s "$output" ]; then
+    if [ ! -s "$output" ] || LC_ALL=C grep -Eiq '^[[:space:]]*<(!doctype[[:space:]]+html|html|head|body)([[:space:]>]|$)' "$output"; then
         rm -f "$output"
         return 1
     fi
@@ -61,10 +66,12 @@ set_config_value() {
 }
 
 MODE_VAL="$(get_config_value mode)"
+GHPROXY="$(get_config_value ghproxy)"
 TIME_AREA="$(get_config_value time_area)"
 LAST_TIME="$(get_config_value time)"
 
 [ "$MODE_VAL" = "mix" ] || MODE_VAL="app"
+[ "$GHPROXY" = "on" ] || GHPROXY="off"
 [ -n "$TIME_AREA" ] || TIME_AREA="UTC"
 
 . "$MODDIR/soc_profile.sh"
@@ -83,6 +90,11 @@ fi
 echo "-------------------------------------"
 echo "📱 当前配置: $PROFILE_NAME / $MODE_VAL"
 echo "🔎 CPU 核数: $CPU_COUNT"
+if [ "$GHPROXY" = "on" ]; then
+    echo "🚀 下载方式: GH-Proxy 加速 ($GHPROXY_BASE)"
+else
+    echo "🌐 下载方式: GitHub 直连"
+fi
 echo "⬇️  正在下载 $PROFILE_NAME App 配置..."
 if ! download_file "$APP_URL" "$TMP_RULES"; then
     echo "❌ App 配置下载失败，请检查网络"

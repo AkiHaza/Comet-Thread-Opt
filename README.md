@@ -10,9 +10,12 @@
 - 检测到 `SM8650` 或 `pineapple`，且 `/sys/devices/system/cpu/present` 确认是 CPU 0–7 的八核版本时，在 `confige.txt` 写入 `8G3=on`。
 - 七核等其他核心版本、其他 SoC 或无法确认核数时使用 Common 语义核心规则；不按当前在线核心数判断。
 - 音量上选择 App 模式，音量下选择 App+Game 的 Mix 模式。
+- 随后再次按下并松开音量键选择配置下载方式：音量上开启 GH-Proxy，音量下关闭；写入 `confige.txt` 的 `ghproxy=on/off`。
 - 安装后点击 Magisk 模块操作按钮会重新核对 SoC 和核心列表，再按设备类型和模式更新规则，下载内容原样写入 `applist.conf`；旧配置中的 `8G3=on` 不会绕过检测。
 
 模块 ID 为 `AppOpt`，安装目录为 `/data/adb/modules/AppOpt`；运行时 cpuset 目录保持 `/dev/cpuset/AkiAppOpt`。设备配置 `confige.txt` 由安装脚本自动生成。首次从旧版升级时完整保留现有规则；已有默认规则基线后，后续升级使用三方合并更新默认规则，同时保留用户的新增、修改和删除。
+
+Action 在 `ghproxy=on` 时通过 `https://gh-proxy.org/` 前缀下载 App/Game 规则；`off`、缺失或无效值均使用 GitHub 直连。更新日志 API 保持直连。开启加速后不自动切换为直连，下载失败、空响应或检测到 HTML 错误页时保留原有规则。可修改安装目录下的 `confige.txt` 切换开关，下次 Action 即生效。
 
 ## 目录
 

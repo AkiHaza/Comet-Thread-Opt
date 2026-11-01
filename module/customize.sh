@@ -62,25 +62,70 @@ print_soc_profile() {
     ui_print "- Thread profile: $PROFILE_NAME"
 }
 
+read_volume_key() {
+    command -v getevent >/dev/null 2>&1 || return 1
+    # Wait for a fresh press and its release so one press cannot answer both prompts.
+    getevent -lqt 2>/dev/null | LC_ALL=C awk '
+        /EV_KEY/ && NF >= 3 {
+            key = $(NF - 1)
+            state = $NF
+            if (key != "KEY_VOLUMEUP" && key != "KEY_VOLUMEDOWN") next
+            if (selected == "" && (state == "DOWN" || state == "00000001")) {
+                selected = key
+            } else if (key == selected && (state == "UP" || state == "00000000")) {
+                print selected
+                complete = 1
+                exit
+            }
+        }
+        END { if (!complete) exit 1 }
+    '
+}
+
 choose_mode() {
     ui_print "********************************************"
     ui_print "- 选择模式："
-    ui_print "按音量+ Mode1: App线程"
-    ui_print "按音量- Mode2: App+Game线程"
+    ui_print "按下并松开音量+ Mode1: App线程"
+    ui_print "按下并松开音量- Mode2: App+Game线程"
     ui_print "********************************************"
 
-    MODE_VAL=""
-    while [ -z "$MODE_VAL" ]; do
-        EVENT=$(getevent -lqt 2>&1 | head -1)
-        if echo "$EVENT" | grep -q "KEY_VOLUMEUP"; then
+    EVENT=$(read_volume_key) || abort "! 无法读取音量键，请重新安装并按下后松开音量键"
+    case "$EVENT" in
+        KEY_VOLUMEUP)
             MODE_VAL=app
             MODE_NAME=App
-        elif echo "$EVENT" | grep -q "KEY_VOLUMEDOWN"; then
+            ;;
+        KEY_VOLUMEDOWN)
             MODE_VAL=mix
             MODE_NAME=Mix
-        fi
-        sleep 0.1
-    done
+            ;;
+        *) abort "! 无效的模式选择" ;;
+    esac
+    ui_print "- 已选择: $PROFILE_NAME / $MODE_NAME"
+}
+
+choose_ghproxy() {
+    ui_print "********************************************"
+    ui_print "- 是否通过 GH-Proxy 加速下载配置？"
+    ui_print "按下并松开音量+：开启加速"
+    ui_print "按下并松开音量-：关闭加速，使用 GitHub 直连"
+    ui_print "********************************************"
+
+    EVENT=$(read_volume_key) || abort "! 无法读取音量键，请重新安装并按下后松开音量键"
+    case "$EVENT" in
+        KEY_VOLUMEUP)
+            GHPROXY=on
+            ui_print "- 配置下载: GH-Proxy 加速"
+            ;;
+        KEY_VOLUMEDOWN)
+            GHPROXY=off
+            ui_print "- 配置下载: GitHub 直连"
+            ;;
+        *) abort "! 无效的加速选择" ;;
+    esac
+}
+
+write_device_config() {
 
     TIME_AREA=$(getprop persist.sys.timezone)
     [ -n "$TIME_AREA" ] || TIME_AREA=UTC
@@ -88,6 +133,7 @@ choose_mode() {
 
     cat > "$MODPATH/confige.txt" << configEOF
 mode=$MODE_VAL
+ghproxy=$GHPROXY
 8G3=$SOC_8G3
 soc_model=$SOC_MODEL
 soc_platform=$SOC_PLATFORM
@@ -97,7 +143,6 @@ time=$UTC_TIME
 configEOF
 
     sed -i "/^description=/ s|^description=.*|description=彗星线程分配 $PROFILE_NAME $MODE_NAME|" "$MODPATH/module.prop"
-    ui_print "- 已选择: $PROFILE_NAME / $MODE_NAME"
 }
 
 preserve_existing_config() {
@@ -134,6 +179,7 @@ module_instructions() {
     ui_print "cpuset目录: /dev/cpuset/AkiAppOpt"
     ui_print "修改规则无需重启，AkiAppOpt 会自动热加载"
     ui_print "安装后可点击模块操作按钮更新对应配置"
+    ui_print "GH-Proxy 开关: confige.txt 中 ghproxy=on/off"
     ui_print "重启后需运行action"
     ui_print "更多说明: http://AppOpt.suto.top"
     ui_print "********************************************"
@@ -147,6 +193,8 @@ remove_sys_perf_config
 detect_soc_profile
 print_soc_profile
 choose_mode
+choose_ghproxy
+write_device_config
 preserve_existing_config
 module_instructions
 
