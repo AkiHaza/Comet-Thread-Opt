@@ -114,13 +114,31 @@ configEOF
     ui_print "- 已选择: $PROFILE_NAME / $MODE_NAME"
 }
 
-preserve_existing_rules() {
-    OLD_RULES=/data/adb/modules/AppOpt/applist.conf
-    if [ -f "$OLD_RULES" ]; then
-        mv "$MODPATH/applist.conf" "$MODPATH/applist.conf.bak"
-        cp "$OLD_RULES" "$MODPATH/applist.conf"
-        ui_print "- 已保留现有 applist.conf"
-    fi
+preserve_existing_config() {
+	OLD_CONFIG=/data/adb/modules/AppOpt/applist.conf
+	OLD_DEFAULTS=/data/adb/modules/AppOpt/applist.defaults.conf
+	NEW_DEFAULTS="$MODPATH/applist.defaults.conf"
+	MERGE_TEMP="$MODPATH/.applist.merge.$$"
+	# Capture the shipped defaults before replacing the live, editable file.
+	cp "$MODPATH/applist.conf" "$NEW_DEFAULTS" || abort "! 无法保存默认规则基线"
+	[ -f "$OLD_CONFIG" ] || return 0
+	cp "$OLD_CONFIG" "$MODPATH/applist.conf.previous" || abort "! 无法备份现有配置"
+	if [ -f "$OLD_DEFAULTS" ]; then
+		if LC_ALL=C awk -f "$MODPATH/config_merge.awk" \
+			"$OLD_DEFAULTS" "$OLD_CONFIG" "$NEW_DEFAULTS" > "$MERGE_TEMP"; then
+			ui_print "- 已更新默认规则并保留用户新增、修改和删除"
+		else
+			# Keep the old config and its baseline together so a later retry is safe.
+			cp "$OLD_CONFIG" "$MERGE_TEMP" || abort "! 无法保留现有配置"
+			cp "$OLD_DEFAULTS" "$NEW_DEFAULTS" || abort "! 无法保留原规则基线"
+			ui_print "! 配置合并未完成，已保留原配置与基线，未覆盖用户规则"
+		fi
+	else
+		# Pre-feature installations have no trustworthy defaults to compare against.
+		cp "$OLD_CONFIG" "$MERGE_TEMP" || abort "! 无法迁移现有配置"
+		ui_print "- 首次迁移：完整保留现有配置，已记录默认规则基线"
+	fi
+	mv -f "$MERGE_TEMP" "$MODPATH/applist.conf" || abort "! 无法保存升级配置"
 }
 
 module_instructions() {
@@ -141,7 +159,7 @@ extract_bin
 remove_sys_perf_config
 detect_soc_profile
 choose_mode
-preserve_existing_rules
+preserve_existing_config
 module_instructions
 
 set_perm_recursive "$MODPATH" 0 0 0755 0644

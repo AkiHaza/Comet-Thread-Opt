@@ -19,44 +19,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NDK_VERSION: r27c
       MODULE_DIR: module
-      AKI_APP_OPT_REF: 1.1.0
 
     steps:
-      - name: Checkout Comet rules
+      - name: Checkout Comet module
         uses: actions/checkout@v4
         with:
           path: comet
 
-      - name: Checkout AkiAppOpt core
-        uses: actions/checkout@v4
-        with:
-          repository: AkiHaza/AkiAppOpt
-          ref: ${{ env.AKI_APP_OPT_REF }}
-          path: akiappopt
-
-      - uses: nttld/setup-ndk@v1
-        with:
-          ndk-version: ${{ env.NDK_VERSION }}
-          local-cache: true
-
-      - name: Build AkiAppOpt binaries
+      - name: Verify supplied AkiAppOpt binaries
         shell: bash
+        working-directory: comet
         run: |
           set -euo pipefail
-          source_file="$GITHUB_WORKSPACE/akiappopt/module/AppOpt.c"
-          module_dir="$GITHUB_WORKSPACE/comet/$MODULE_DIR"
-          toolchain="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin"
-          build() {
-            mkdir -p "$module_dir/bin/$1"
-            "$toolchain/$2" -O2 -ffunction-sections -fdata-sections -s \
-              -Wl,--gc-sections -o "$module_dir/bin/$1/AppOpt" "$source_file"
-            chmod 0755 "$module_dir/bin/$1/AppOpt"
-          }
-          build arm64-v8a aarch64-linux-android21-clang
-          build armeabi-v7a armv7a-linux-androideabi21-clang
-          build x86_64 x86_64-linux-android21-clang
+          for abi in arm64-v8a armeabi-v7a x86_64; do
+            test -s "$MODULE_DIR/bin/$abi/AppOpt"
+            chmod 0755 "$MODULE_DIR/bin/$abi/AppOpt"
+          done
+          (cd "$MODULE_DIR/bin" && sha256sum --check --strict SHA256SUMS)
+
+      - name: Check module shell syntax
+        shell: bash
+        working-directory: comet
+        run: |
+          set -euo pipefail
+          for script in "$MODULE_DIR"/*.sh "$MODULE_DIR/META-INF/com/google/android/update-binary"; do
+            sh -n "$script"
+          done
 
       - name: Package module
         id: package
@@ -66,9 +55,10 @@ jobs:
           set -euo pipefail
           version="$(sed -n 's/^version=//p' "$MODULE_DIR/module.prop" | head -n1)"
           artifact="${version}.zip"
+          cp LICENSE "$MODULE_DIR/LICENSE"
           chmod 0755 "$MODULE_DIR"/*.sh
           chmod 0755 "$MODULE_DIR/META-INF/com/google/android/update-binary"
-          (cd "$MODULE_DIR" && zip -r -9 "../$artifact" . -x 'bin/*/.gitkeep')
+          (cd "$MODULE_DIR" && zip -r -9 "../$artifact" . -x 'AppOpt.c')
           echo "artifact=$artifact" >> "$GITHUB_OUTPUT"
 
       - name: Upload module

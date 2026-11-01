@@ -1,0 +1,5 @@
+*.sh text eol=lf
+*.c text eol=lf
+*.awk text eol=lf
+*.yml text eol=lf
+module/META-INF/com/google/android/update-binary text eol=lf

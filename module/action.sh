@@ -88,7 +88,6 @@ if ! download_file "$APP_URL" "$TMP_RULES"; then
     exit 1
 fi
 
-GAME_UPDATED=0
 if [ "$MODE_VAL" = "mix" ]; then
     echo "⬇️  正在下载 $PROFILE_NAME Game 配置..."
     if ! download_file "$GAME_URL" "$TMP_GAME"; then
@@ -98,7 +97,6 @@ if [ "$MODE_VAL" = "mix" ]; then
     fi
     printf '\n' >> "$TMP_RULES"
     cat "$TMP_GAME" >> "$TMP_RULES"
-    GAME_UPDATED=1
 fi
 
 mv -f "$TMP_RULES" "$APPLIST_CONF"
@@ -117,7 +115,7 @@ set_config_value time "$UTC_TIME"
 
 echo "-------------------------------------"
 echo "✅ $PROFILE_NAME App 配置已更新"
-[ "$GAME_UPDATED" = "1" ] && echo "✅ $PROFILE_NAME Game 配置已更新"
+[ "$MODE_VAL" = "mix" ] && echo "✅ $PROFILE_NAME Game 配置已更新"
 echo "-------------------------------------"
 echo "📝 更新内容:"
 
